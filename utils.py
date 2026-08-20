@@ -13,7 +13,7 @@ def read_file(path):
         return file.read()
 
 def load_template(name):
-    with open(f'templates/{name}', 'r') as file:
+    with open(f'templates/{name}', 'r', encoding='utf-8') as file:
         return file.read()
 
 def load_data(name):

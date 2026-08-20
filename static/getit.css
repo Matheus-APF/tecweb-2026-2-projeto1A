@@ -1,0 +1,224 @@
+/*
+Algumas informações úteis e dicas:
+  - Fontes disponíveis:
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Permanent Marker', cursive;
+  - Cores:
+    Tons de amarelo:
+      #e4fc2b
+      #e0d426
+      #f7d736
+      #e0af26
+      #fcb02b
+    Tons de cinza:
+      #2c2c2c
+      #4c4c4c
+    Cores dos cards:
+      #ead3a7
+      #9de0f5
+      #ef89ba
+      #fae890
+      #abe9c1
+  - Sombra: https://codepen.io/sdthornton/pen/wBZdXq
+ */
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
+}
+
+/* Cabehaljo */
+div.appbar{
+  display: flex;
+  flex-direction: row; 
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f7d735;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  padding: 10px;
+}
+
+.logo{
+  width: 80px;
+  padding-right: 12px;
+}
+
+/* Formulario */
+.form-card{
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 12px;
+  width: 500px;
+  margin: 30px auto;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
+
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.form-card-title{
+  font-weight: bold;
+  font-size: 20px;
+  width: 100%;
+  border: none;
+  color: #333;
+  padding: 8px 4px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.autoresize{
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  border: none;
+  font-size: 15px;
+  color: #555;
+  padding: 8px 4px;
+  outline: none;
+  line-height: 1.4;
+  font-family: "Roboto", sans-serif;
+  height: 20px;
+}
+
+
+/* Botão */
+.btn {
+  width: 100%;
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+
+  color: #080b0d;
+  font-size: 13px;
+
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+  background-color: #f7d736;
+
+  transition: background-color 0.3s;
+}
+
+.btn > * {
+  width: 100%;
+  position: relative;
+  
+}
+
+.btn:before {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  display: block;
+  padding-top: 0;
+
+  border-radius: 100%;
+
+  background-color: rgba(236, 240, 241, 0.3);
+
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+  padding-top: 120%;
+
+  transition: width 0.2s ease-out, padding-top 0.2s ease-out;
+} 
+
+/* Cards */
+.card-container{
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 24px 16px;
+  padding: 20px 40px;
+}
+
+.card{
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  min-height: 140px;
+  width: 220px;
+  min-height: 140px;
+  margin: 3px;
+  padding: 20px 16px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  font-family: 'Comic Sans MS', 'Segoe Print', cursive, sans-serif;
+  color: #2c2c2c;
+  text-align: center;
+  transition: transform 0.15s ease;
+}
+
+.card h3{
+  font-weight: bold;
+  font-size: 20px;
+  color: #080b0d;
+
+  width: 100%;
+  text-align: left;
+  padding-bottom: 50px;
+}
+
+.card p{
+  flex: 1;
+  font-weight: bold;
+  color: #53524e;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  text-align: center;
+
+
+
+}
+
+.card:hover{
+  transform: scale(1.05) rotate(0deg) !important;
+  z-index: 2;
+}
+
+/* Cores (sorteadas pelo JS: card-color-1 a card-color-5) */
+.card-color-1{ background: #fae890; } /* amarelo claro */
+.card-color-2{ background: #ef89ba; } /* rosa */
+.card-color-3{ background: #9de0f5; } /* azul */
+.card-color-4{ background: #abe9c1; } /* verde */
+.card-color-5{ background: #ead3a7; } /* bege */
+
+/* Rotação (sorteada pelo JS: card-rotation-1 a card-rotation-11) */
+.card-rotation-1{ transform: rotate(-6deg); }
+.card-rotation-2{ transform: rotate(-5deg); }
+.card-rotation-3{ transform: rotate(-4deg); }
+.card-rotation-4{ transform: rotate(-3deg); }
+.card-rotation-5{ transform: rotate(-1deg); }
+.card-rotation-6{ transform: rotate(0deg); }
+.card-rotation-7{ transform: rotate(1deg); }
+.card-rotation-8{ transform: rotate(3deg); }
+.card-rotation-9{ transform: rotate(4deg); }
+.card-rotation-10{ transform: rotate(5deg); }
+.card-rotation-11{ transform: rotate(6deg); }
