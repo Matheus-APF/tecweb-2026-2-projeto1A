@@ -24,13 +24,14 @@ while True:
     route = extract_route(request) # Extrai rota da URL
 
     filepath = CUR_DIR / route # Concatenacao do tipo File
+    
     if filepath.is_file(): # Verifica se arquivo existe 
-        # p/ tds arquivos
         response = build_response() + read_file(filepath) # Monta Response ; Read file entra como Body ; em Byte
-
-    elif route == '':      # Caso nao haja caminho --> Devolve Index 
-        response = index(request) # Monta pagina de index (pagina principal) e devolve
-    else: # Caso Nao File / Nao exista
+    # Caminho Vazio --> Home
+    elif route == '':      
+        response = index(request)
+    # Nao Arquivo / Nao Encontrado
+    else:
         response = build_response() # Nao devolve nada
 
     client_connection.sendall(response) # Envia response montada

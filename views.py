@@ -11,27 +11,35 @@ def index(request):
         notes_li.append(
             load_template('components/note.html').format(
                 title=dados.title,
-                details=dados.content
+                details=dados.content,
+                id=dados.id
             )
         )
     notes = '\n'.join(notes_li)
 
-    # A string de request sempre começa com o tipo da requisição (ex: GET, POST)
-    if request.startswith('POST'): # Se vor Post
-        request = request.replace('\r', '')  # Remove caracteres indesejados
-        # Cabeçalho e corpo estão sempre separados por duas quebras de linha
-        partes = request.split('\n\n')
+    # Trata requisição 'POST'
+    if request.startswith('POST'): 
+        # Trata texto da requisição
+        request = request.replace('\r', '')     # Remove caracteres indesejados
+        partes = request.split('\n\n')          # Cabeçalho e corpo separados por duas quebras de linha
         corpo = partes[1]
         params = {}
         for chave_valor in corpo.split('&'):
             chave_valor = chave_valor.split('=')
-            params[chave_valor[0]] = unquote_plus(chave_valor[1])     # subtstitui caract espec auto       
+            params[chave_valor[0]] = unquote_plus(chave_valor[1])     # subst. caract espec auto       
 
-        note = database.Note(title=params['titulo'], content=params['detalhes'])
-        sql_entity.add(note)
+        # Monta resposta por ''subtipo'' (valor parametro) de POST
+        # Criar Nota
+        if params['acao'] == 'criar':
+            note = database.Note(title=params['titulo'], content=params['detalhes'])
+            sql_entity.add(note)
 
-        #add_data({'titulo': params['titulo'], 'detalhes': params['detalhes']})
+        # Excluir Nota
+        elif params['acao'] == 'excluir':
+            id_note = int(params['id'])
+            sql_entity.delete(id_note)
 
+        # Retorna resposta montada
         return build_response(code=303, reason='See Other', headers='Location: /')
 
     return build_response(load_template('index.html').format(notes=notes))
