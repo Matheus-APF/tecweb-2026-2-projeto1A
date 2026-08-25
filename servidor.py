@@ -18,7 +18,7 @@ while True:
     client_connection, client_address = server_socket.accept() # abre socket: porta no local host aguardando request
 
     # Trata String Requisicao
-    request = client_connection.recv(1024).decode() # String formato verbo HTTP
+    request = client_connection.recv(4096).decode() # String formato verbo HTTP # 1024 4096
     print('*'*100)
     print(request)
     route = extract_route(request) # Extrai rota da URL

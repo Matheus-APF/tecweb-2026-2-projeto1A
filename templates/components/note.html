@@ -1,6 +1,15 @@
-<div class="card" data-id="{id}">
+<div class="card" data-id="{id}" data-favorite="{favorite}">
     <div class="card-config"> 
         <h3 class="card-title">{title}</h3>
+
+        <!-- Formulário (POST) com botao de favoritar-->
+        <form method="POST" action="/">
+            <input type="hidden" name="acao" value="favoritar">
+            <input type="hidden" name="id" value="{id}">
+            <button type="submit" class="icon-button">
+                <img src="{favorite_icon}" alt="Favoritar anotação" width="20" height="20" >
+            </button>
+        </form>
 
         <!-- Hiperlink (GET) com botao de editar-->
         <a href="edit/{id}" class="icon-button">

@@ -27,4 +27,22 @@ document.addEventListener("DOMContentLoaded", function () {
       5
     )} card-rotation-${getRandomInt(1, 11)}`;
   }
+
+
+  // [NOVO] Coloca os cards favoritos antes dos demais
+  let cardsOrdenados = Array.from(cards);
+
+  cardsOrdenados.sort(function (cardA, cardB) {
+    return Number(cardB.dataset.favorite) - Number(cardA.dataset.favorite);
+  });
+
+  if (cardsOrdenados.length > 0) {
+    let container = cardsOrdenados[0].parentNode;
+
+    for (let card of cardsOrdenados) {
+      container.appendChild(card);
+    }
+  }
+
 });
+

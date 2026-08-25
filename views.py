@@ -24,17 +24,25 @@ def index(request):
             id_note = int(params['id'])
             sql_entity.delete(id_note)
 
-        # Retorna resposta montada
-        #return build_response(code=303, reason='See Other', headers='Location: /')
+        # Favortiar Nota
+        elif params['acao'] == 'favoritar':
+            id_note = int(params['id'])
+            sql_entity.toggle_favorite(id_note)
 
-    # Envia pagina resetada
     # Adiciona cartas do banco de dados ao html
     notes_li = []
     for dados in sql_entity.get_all():
-        notes_li.append(
-            load_template('components/note.html').format(title=dados.title, details=dados.content,id=dados.id))
-        # lite com if e {}?
+        if dados.favorite:
+            favorite_icon = '/img/ico-favorite-filled.png'
+        else:
+            favorite_icon = '/img/ico-favorite.png'
+        notes_li.append(load_template('components/note.html').format(
+            title=dados.title, details=dados.content, id=dados.id,
+            favorite=dados.favorite, favorite_icon=favorite_icon 
+            ))
     notes = '\n'.join(notes_li)
+
+    # Envia pagina resetada
     sql_entity.close()
     return build_response(load_template('index.html').format(notes=notes))
 
