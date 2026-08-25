@@ -2,7 +2,7 @@
 import socket
 from pathlib import Path
 from utils import extract_route, read_file, build_response
-from views import index, edit, notfound
+from views import index, edit, notfound, delete
 CUR_DIR = Path(__file__).parent
 SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 8080
@@ -27,6 +27,7 @@ while True:
     # Direcionamento
 
     # Aruivo Existe
+    print(route, "  AAAAAAAAAAAAAAAAAa")
     if filepath.is_file():  
         response = build_response() + read_file(filepath) # Monta Response ; Read file entra como Body ; em Byte
 
@@ -38,6 +39,11 @@ while True:
     elif route.startswith('edit/'):
         id_note = int(route.split('/')[1])
         response = edit(request, id_note)
+
+    # Rota Exclusão
+    elif route.startswith('delete/'):
+        id_note = int(route.split('/')[1])
+        response = delete(request, id_note)
 
     # Nao Arquivo / Nao Encontrado
     else:

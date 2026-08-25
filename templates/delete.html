@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmar exclusão</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/getit.css" />
+  </head>
+
+  <body>
+    <div class="appbar">
+      <img src="/img/logo-getit.png" class="logo" />
+      <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+    </div>
+
+    <main class="delete-confirmation">
+      <p>Deseja realmente excluir esta anotação?</p>
+
+      <div class="card">
+        <h3 class="card-title">{title}</h3>
+        <div class="card-content">
+          <p>{details}</p>
+        </div>
+      </div>
+
+      <form method="POST">
+        <input type="hidden" name="id" value="{id}" />
+
+        <button class="btn" type="submit" name="acao" value="nao">
+          Não
+        </button>
+        <button class="btn" type="submit" name="acao" value="sim">
+          Sim
+        </button>
+      </form>
+    </main>
+
+    <script type="text/javascript" src="/static/getit.js"></script>
+  </body>
+</html>

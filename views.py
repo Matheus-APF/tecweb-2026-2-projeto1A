@@ -33,6 +33,7 @@ def index(request):
     for dados in sql_entity.get_all():
         notes_li.append(
             load_template('components/note.html').format(title=dados.title, details=dados.content,id=dados.id))
+        # lite com if e {}?
     notes = '\n'.join(notes_li)
     sql_entity.close()
     return build_response(load_template('index.html').format(notes=notes))
@@ -47,6 +48,7 @@ def edit(request, id_note):
     # GET → mostra tela de edição
     if request.startswith('GET'):
         note = load_template('components/note_edit.html').format(title=dado.title, details=dado.content, id=dado.id)
+        sql_entity.close()
         return build_response(load_template('edit.html').format(note=note))
 
     # POST → trata o botão pressionado
@@ -65,11 +67,31 @@ def edit(request, id_note):
         # Volta para a tela principal
         sql_entity.close()
         #return index(request)
-        return build_response(code=303, reason='See Other', headers='Location: /' )
+        return build_response(code=303, reason='See Other', headers='Location: /' ) # redireciona para '/'
 
+# Tela 404
 def notfound():
-    return build_response(
-        body=load_template('404.html'),
-        code=404,
-        reason='Not Found'
-    )
+    return build_response(body=load_template('404.html'), code=404, reason='Not Found')
+
+# Tela de confirmação de exclusão
+def delete(request, id_note):
+    sql_entity = database.Database('data/banco')
+    dado = sql_entity.get_id(id_note)
+
+    # GET: mostra a nota e pede a confirmação
+    if request.startswith('GET'):
+        pagina = load_template('delete.html').format(title=dado.title, details=dado.content, id=dado.id)
+        sql_entity.close()
+        return build_response(pagina)
+
+    # POST: verifica qual botão foi pressionado (escolha do usuario)
+    if request.startswith('POST'):
+        params = extrair_params(request)
+
+        # Exclui se Sim
+        if params['acao'] == 'sim':
+            sql_entity.delete(id_note)
+
+        # Volta à página principal
+        sql_entity.close()
+        return build_response(code=303, reason='See Other', headers='Location: /')

@@ -3,20 +3,14 @@
         <h3 class="card-title">{title}</h3>
 
         <!-- Hiperlink (GET) com botao de editar-->
-        <a href="/edit/{id}">
-            <button type="button" class="icon-button">
-                <img src="img/ico-edit.png" alt="Button Icon" width="20" height="20">
-            </button>
+        <a href="edit/{id}" class="icon-button">
+            <img src="img/ico-edit.png" alt="Button Icon" width="20" height="20">
         </a>
 
-        <!-- Formulario (POST) com botao de excluir -->
-        <form method="POST" action="/">
-            <input type="hidden" name="acao" value="excluir">
-            <input type="hidden" name="id" value="{id}">
-            <button type="submit" class="icon-button">
-                <img src="img/ico-trash.png" alt="Button Icon" width="20" height="20">
-            </button>
-        </form>
+        <!-- Hiperlink (GET) para a página de confirmação -->
+        <a href="delete/{id}" class="icon-button"> 
+            <img src="/img/ico-trash.png" alt="Excluir anotação" width="20" height="20" > 
+        </a>
 
     </div>
     <div class="card-content">

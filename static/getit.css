@@ -306,3 +306,35 @@ div.appbar{
   max-width: 400px;
   text-decoration: none;
 }
+
+/* Página de confirmação de exclusão */
+.delete-confirmation .card {
+  width: min(350px, 80%);
+  text-align: left;
+}
+
+.delete-confirmation .card-content p {
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.delete-confirmation form {
+  width: 50%;
+  max-width: 400px;
+  display: flex;
+  gap: 16px;
+}
+
+.delete-confirmation form .btn {
+  flex: 1;
+  min-width: 0;
+}
+
+main.delete-confirmation {
+  min-height: calc(100vh - 72px); /* desconta aproximadamente o cabeçalho */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
