@@ -273,3 +273,36 @@ div.appbar{
 .form-buttons .btn[value="cancelar"] {
     background-color: #e0e0e0;
 }
+
+/* Visual Pagina 404 */
+.notfound {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 32px;
+  text-align: center;
+}
+
+.notfound p {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.notfound img {
+  width: min(350px, 80%);
+  height: auto;
+}
+
+.notfound .btn {
+  min-width: 120px;
+}
+
+.notfound a {
+  width: 50%;
+  max-width: 400px;
+  text-decoration: none;
+}

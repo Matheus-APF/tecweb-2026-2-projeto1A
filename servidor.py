@@ -2,7 +2,7 @@
 import socket
 from pathlib import Path
 from utils import extract_route, read_file, build_response
-from views import index, edit
+from views import index, edit, notfound
 CUR_DIR = Path(__file__).parent
 SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 8080
@@ -41,7 +41,7 @@ while True:
 
     # Nao Arquivo / Nao Encontrado
     else:
-        response = build_response() # Nao devolve nada
+        response = notfound()
 
     client_connection.sendall(response) # Envia response montada
 

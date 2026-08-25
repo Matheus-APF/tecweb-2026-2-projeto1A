@@ -31,9 +31,6 @@ def build_response(body='', code=200, reason='OK', headers=''):
     response = f'HTTP/1.1 {code} {reason}\n{headers}\n{body}'
     return response.encode()
 
-
-
-
 def extrair_params(request):
     """Extrai os parâmetros enviados no corpo de uma requisição POST."""
     request = request.replace('\r', '')  # Padroniza as quebras de linha

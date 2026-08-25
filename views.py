@@ -66,3 +66,10 @@ def edit(request, id_note):
         sql_entity.close()
         #return index(request)
         return build_response(code=303, reason='See Other', headers='Location: /' )
+
+def notfound():
+    return build_response(
+        body=load_template('404.html'),
+        code=404,
+        reason='Not Found'
+    )
