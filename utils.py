@@ -1,4 +1,5 @@
 import json
+from urllib.parse import unquote_plus
 
 def extract_route(request):
     # Busca o Patche na string da requisição e devolve
@@ -29,3 +30,18 @@ def build_response(body='', code=200, reason='OK', headers=''):
     # Monta Response com arquivo solicitado no formato HTTP *S/ Body ainda
     response = f'HTTP/1.1 {code} {reason}\n{headers}\n{body}'
     return response.encode()
+
+
+
+
+def extrair_params(request):
+    """Extrai os parâmetros enviados no corpo de uma requisição POST."""
+    request = request.replace('\r', '')  # Padroniza as quebras de linha
+    partes = request.split('\n\n')       # Separa cabeçalho e corpo
+    corpo = partes[1]
+    params = {}
+    # Converte "titulo=ABC&detalhes=XYZ" em um dicionário
+    for chave_valor in corpo.split('&'):
+        chave, valor = chave_valor.split('=')
+        params[chave] = unquote_plus(valor)  # Decodifica caracteres especiais
+    return params

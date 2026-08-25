@@ -18,13 +18,23 @@ class Database:
             notes.append(Note(id=int(id), title=title, content=content))
         return notes
 
+    def get_id(self, id):
+        cursor = self.conn.execute(f"SELECT id, title, content FROM note WHERE id = {id}") # resultado pesquisa
+        linha = cursor.fetchone() # primeira linha
+        note = Note(id=linha[0], title=linha[1], content=linha[2])
+        return note
+
     def update(self, entry):
         self.conn.execute(f"UPDATE note SET title = '{entry.title}' WHERE id = {entry.id}")
         self.conn.execute(f"UPDATE note SET content = '{entry.content}' WHERE id = {entry.id}")
+        # Ou self.conn.execute( "UPDATE note SET title = ?, content = ? WHERE id = ?", (entry.title, entry.content, entry.id) )
 
     def delete(self, note_id):
         self.conn.execute(f"DELETE FROM note WHERE id = {note_id}")
         self.conn.commit()
+
+    def close(self):
+        self.conn.close()
 
 from dataclasses import dataclass
 @dataclass

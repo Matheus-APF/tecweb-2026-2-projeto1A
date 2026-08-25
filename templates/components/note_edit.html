@@ -1,0 +1,40 @@
+<!-- Formulario (POST) com botao de salvar, cancelar e redirecionamento para home -->
+<form class="form-card" method="POST">
+
+    <!-- ID da nota sendo editada -->
+    <input type="hidden" name="id" value="{id}">
+
+    <input
+        class="form-card-title"
+        type="text"
+        name="titulo"
+        value="{title}"
+        placeholder="Título"
+    />
+
+    <textarea
+        class="autoresize"
+        name="detalhes"
+        placeholder="Digite o conteúdo..."
+    >{details}</textarea>
+
+    <div class="form-buttons">
+        <!-- Cancelar -->
+        <button
+            class="btn"
+            type="submit"
+            name="acao"
+            value="cancelar">
+            Cancelar
+        </button>
+
+        <!-- Salvar -->
+        <button
+            class="btn"
+            type="submit"
+            name="acao"
+            value="salvar">
+            Salvar
+        </button>
+    </div>
+</form>

@@ -254,3 +254,22 @@ div.appbar{
 .card-rotation-9{ transform: rotate(4deg); }
 .card-rotation-10{ transform: rotate(5deg); }
 .card-rotation-11{ transform: rotate(6deg); }
+
+/* Botao Formulario Edit */
+/* Botões exclusivos do formulário de edição */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+}
+
+.form-buttons .btn {
+    flex: 1;
+    width: auto;
+}
+
+/* Botão Cancelar */
+.form-buttons .btn[value="cancelar"] {
+    background-color: #e0e0e0;
+}

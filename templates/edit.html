@@ -23,30 +23,9 @@
       <img src="/img/logo-getit.png" class="logo" />
       <span class="subtitle">Como o Post-it, mas com outro verbo</span>
     </div>
-
     <main class="container">
-      <form class="form-card" method="post">
-        <input type="hidden" name="acao" value="criar">
-        <input
-          class="form-card-title"
-          type="text"
-          name="titulo"
-          placeholder="Título"
-        />
-        <textarea
-          class="autoresize"
-          name="detalhes"
-          placeholder="Digite o conteúdo..."
-        ></textarea>
-        <button class="btn" type="submit">Criar</button>
-      </form>
-
-      <div class="card-container">
-      {notes}
-      </div>
-
+    {note}
     </main>
-
     <script type="text/javascript" src="/static/getit.js"></script>
   </body>
 </html>

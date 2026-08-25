@@ -2,6 +2,8 @@ from database import Database
 from database import Note
 import json
 
+"""Recriar banco de dados para teste"""
+
 db = Database('banco')
 
 def load_data(name):
